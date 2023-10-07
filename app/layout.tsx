@@ -3,6 +3,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import React from 'react'
 import { ClerkProvider } from '@clerk/nextjs'
+import { ThemeProvider } from '@/components/providers/providers'
+import { cn } from '@/lib/utils'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,8 +20,17 @@ export default function RootLayout({
 }) {
     return (
         <ClerkProvider>
-            <html lang="en">
-                <body className={inter.className}>{children}</body>
+            <html lang="en" suppressHydrationWarning>
+                <body className={cn(inter.className, 'bg-white dark:bg-dark')}>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="dark"
+                        enableSystem={false}
+                        storageKey="discord-theme"
+                    >
+                        {children}
+                    </ThemeProvider>
+                </body>
             </html>
         </ClerkProvider>
     )
