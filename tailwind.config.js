@@ -27,7 +27,7 @@ module.exports = {
                 mainAlt: '#0d43dc',
                 light: '#a2a1a6',
                 dark: '#313338',
-                darker: '#1d1d23',
+                darker: '#1e1f22',
                 white: '#FFF',
                 error: '#ff002d',
                 transparent: 'transparent',
