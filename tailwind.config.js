@@ -32,6 +32,8 @@ module.exports = {
                 error: '#ff002d',
                 transparent: 'transparent',
                 current: 'currentColor',
+                btnPrimary: '#5865f2',
+                btnHover: '#3c45a5',
                 primary: {
                     DEFAULT: "hsl(var(--primary))",
                     foreground: "hsl(var(--primary-foreground))",

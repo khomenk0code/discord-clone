@@ -19,6 +19,8 @@ const config: Config = {
                 error: '#ff002d',
                 transparent: 'transparent',
                 current: 'currentColor',
+                btnPrimary: '#5865f2',
+                btnHover: '#3c45a5',
             },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
