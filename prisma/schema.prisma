@@ -24,10 +24,10 @@ model Profile {
 }
 
 model Server {
-  id        String @id @default(uuid())
-  name      String
-  imageUrl  String @db.Text
-  initeCode String @db.Text
+  id         String @id @default(uuid())
+  name       String
+  imageUrl   String @db.Text
+  inviteCode String @db.Text
 
   profileId String
   profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
