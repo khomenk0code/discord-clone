@@ -27,21 +27,21 @@ const NavigationItem: NextPage<NavigationItemProps> = ({
     return (
         <ActionTooltip side="right" align="center" label={name}>
             <button
-                className="flex relative items-center"
+                className="flex relative items-center group"
                 onClick={handleServerRedirect}
             >
                 <div
                     className={cn(
-                        'absolute left-0 bg-primary rounded-r-full transition-all w-[4px] h-[48px]  items-center',
-                        params?.serverId !== id && 'group-hover:h-5',
-                        params?.serverId === id ? 'h-9' : 'h-2'
+                        'absolute left-0 bg-primary rounded-r-full transition-all w-[4px]',
+                        params?.serverId !== id && 'group-hover:h-[20px]',
+                        params?.serverId === id ? 'h-[36px]' : 'h-[8px]'
                     )}
                 />
                 <div
                     className={cn(
-                        'relative group flex mx-3 h-12 w-12 rounded-3xl group-hover:rounded-2xl transition-all overflow-hidden',
+                        'relative group flex mx-3 h-[48px] w-[48px] rounded-[24px] group-hover:rounded-[16px] transition-all overflow-hidden',
                         params?.serverId === id &&
-                            'bg-primary/10 text-primary rounded-2xl'
+                            'bg-primary/10 text-primary rounded-[16px]'
                     )}
                 >
                     <Image fill src={imageUrl} alt="Channel" />
