@@ -26,13 +26,13 @@ const ServerMember = ({ member }: ServerMemberProps) => {
 
     const icon = roleIconMap[member.role]
 
-    const onClick = () => {
+    const onConversationRedirect = () => {
         router.push(`/servers/${params?.serverId}/conversations/${member.id}`)
     }
 
     return (
         <button
-            onClick={onClick}
+            onClick={onConversationRedirect}
             className={cn(
                 'group px-2 py-2 rounded-md flex items-center gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition mb-1',
                 params?.memberId === member.id &&
