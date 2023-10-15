@@ -4,6 +4,7 @@ import { NextApiResponseServerIo } from '@/types'
 import { currentProfilePages } from '@/lib/current-profile-pages'
 import { db } from '@/lib/db'
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponseServerIo) => {
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' })
