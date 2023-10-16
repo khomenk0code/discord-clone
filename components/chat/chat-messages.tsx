@@ -113,7 +113,7 @@ const ChatMessages: NextPage<ChatMessagesProps> = ({
             <div className="flex flex-col-reverse mt-auto">
                 {data?.pages?.map((group, i) => (
                     <Fragment key={i}>
-                        {group.items.map(
+                        {group?.items?.map(
                             (message: MessageWithMemberWithProfile) => (
                                 <ChatItem
                                     key={message.id}
