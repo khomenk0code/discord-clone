@@ -39,6 +39,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import UserAvatar from '@/components/user-avatar'
+import ActionTooltip from '@/components/navigation/action-tooltip'
 
 const roleIconMap = {
     GUEST: null,
@@ -117,7 +118,12 @@ const MembersModal = () => {
                             <div className="flex flex-col gap-y-1">
                                 <div className="text-xs font-semibold flex items-center gap-x-1">
                                     {member.profile.name}
-                                    {roleIconMap[member.role]}
+                                    <ActionTooltip
+                                        side="right"
+                                        label={member.role}
+                                    >
+                                        {roleIconMap[member.role]}
+                                    </ActionTooltip>
                                 </div>
                                 <p className="text-xs text-zinc-500">
                                     {member.profile.email}

@@ -6,6 +6,7 @@ import { useParams, useRouter } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
 import UserAvatar from '@/components/user-avatar'
+import ActionTooltip from '@/components/navigation/action-tooltip'
 
 interface ServerMemberProps {
     member: Member & { profile: Profile }
@@ -52,7 +53,9 @@ const ServerMember = ({ member }: ServerMemberProps) => {
             >
                 {member.profile.name}
             </p>
-            {icon}
+            <ActionTooltip side="right" label={member.role}>
+                {roleIconMap[member.role]}
+            </ActionTooltip>
         </button>
     )
 }
