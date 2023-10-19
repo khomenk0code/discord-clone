@@ -135,7 +135,9 @@ const CreateChannelModal = () => {
                                 name="type"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Channel Type</FormLabel>
+                                        <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
+                                            Channel Type
+                                        </FormLabel>
                                         <Select
                                             disabled={isLoading}
                                             onValueChange={field.onChange}
@@ -165,9 +167,17 @@ const CreateChannelModal = () => {
                                 )}
                             />
                         </div>
-                        <DialogFooter className="bg-gray-100 px-6 py-4">
+                        <DialogFooter className="bg-gray-100 px-6 py-4 justify-end ">
+                            <Button
+                                className="hover:underline"
+                                variant="ghost"
+                                onClick={handleClose}
+                                type="button"
+                            >
+                                Cancel
+                            </Button>
                             <Button variant="primary" disabled={isLoading}>
-                                Create
+                                Create Channel
                             </Button>
                         </DialogFooter>
                     </form>

@@ -82,12 +82,12 @@ const EditServerModal: NextPage = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={handleCloseModal}>
-            <DialogContent className="bg-white text-black p-0 overflow-hidden">
+            <DialogContent className="bg-white dark:bg-dark dark:text-white text-black p-0 overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
                         Customize your server
                     </DialogTitle>
-                    <DialogDescription className="text-center text-zinc-500">
+                    <DialogDescription className="text-center text-zinc-500 dark:text-zinc-300">
                         Your server is where you and your friends hang out. Make
                         yours and start talking
                     </DialogDescription>
@@ -121,22 +121,19 @@ const EditServerModal: NextPage = () => {
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel
-                                            className="uppercase text-xs font-bold text-zinc-500
-                                   dark:text-secondary/70"
-                                        >
+                                        <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
                                             Server name
                                         </FormLabel>
                                         <FormControl>
                                             <Input
                                                 disabled={isLoading}
-                                                className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                                                className="bg-zinc-300/50 dark:text-white border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
                                                 placeholder="Enter server name"
                                                 {...field}
                                             ></Input>
                                         </FormControl>
                                         {/* eslint-disable-next-line react/no-unescaped-entities */}
-                                        <div className="text-xs/normal text-zinc-500">
+                                        <div className="text-xs/normal text-zinc-500 dark:text-zinc-300">
                                             By creating a server, you agree to
                                             Discord{"'"}s{' '}
                                             <strong className="text-blue-500">
@@ -151,15 +148,25 @@ const EditServerModal: NextPage = () => {
                                 )}
                             ></FormField>
                         </div>
-                        <DialogFooter className="bg-gray-100 px-6 py-4">
-                            <Button variant="ghost">Back</Button>
-                            <Button
-                                size="server"
-                                disabled={isLoading}
-                                variant="primary"
-                            >
-                                Save
-                            </Button>
+                        <DialogFooter className="bg-gray-100 dark:bg-[#2b2d31] px-6 py-4">
+                            <div className="flex items-center w-full justify-end">
+                                <Button
+                                    className="hover:underline dark:text-white mr-3"
+                                    variant="ghost"
+                                    onClick={() => onClose()}
+                                    type="button"
+                                >
+                                    Cancel
+                                </Button>
+
+                                <Button
+                                    disabled={isLoading}
+                                    size="server"
+                                    variant="primary"
+                                >
+                                    Save
+                                </Button>
+                            </div>
                         </DialogFooter>
                     </form>
                 </Form>

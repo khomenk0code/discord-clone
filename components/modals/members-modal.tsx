@@ -99,9 +99,9 @@ const MembersModal = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={onClose}>
-            <DialogContent className="bg-white text-black overflow-hidden">
+            <DialogContent className="bg-white dark:bg-[#2b2d31] text-black overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
-                    <DialogTitle className="text-2xl text-center font-bold">
+                    <DialogTitle className="text-2xl dark:text-white text-center font-bold">
                         Manage Members
                     </DialogTitle>
                     <DialogDescription className="text-center text-zinc-500">
@@ -116,7 +116,7 @@ const MembersModal = () => {
                         >
                             <UserAvatar src={member.profile.imageUrl} />
                             <div className="flex flex-col gap-y-1">
-                                <div className="text-xs font-semibold flex items-center gap-x-1">
+                                <div className="text-xs dark:text-white font-semibold flex items-center gap-x-1">
                                     {member.profile.name}
                                     <ActionTooltip
                                         side="right"
@@ -134,12 +134,12 @@ const MembersModal = () => {
                                     <div className="ml-auto">
                                         <DropdownMenu>
                                             <DropdownMenuTrigger>
-                                                <MoreVertical className="h-4 w-4 text-zinc-500" />
+                                                <MoreVertical className="h-4 w-4 dark:text-white text-zinc-500 vg" />
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent side="left">
                                                 <DropdownMenuSub>
                                                     <DropdownMenuSubTrigger className="flex items-center">
-                                                        <ShieldQuestion className="w-4 h-4 mr-2" />
+                                                        <ShieldQuestion className="w-4 h-4 mr-2 bg" />
                                                         <span>Role</span>
                                                     </DropdownMenuSubTrigger>
                                                     <DropdownMenuPortal>

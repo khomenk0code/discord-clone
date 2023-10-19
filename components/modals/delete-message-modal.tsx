@@ -23,7 +23,7 @@ const DeleteMessageModal: NextPage = () => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const onClick = async () => {
+    const handleDeleteMessage = async () => {
         try {
             setIsLoading(true)
             const url = qs.stringifyUrl({
@@ -43,31 +43,34 @@ const DeleteMessageModal: NextPage = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={onClose}>
-            <DialogContent className="bg-white text-black p-0 overflow-hidden">
+            <DialogContent className="bg-white dark:bg-dark dark:text-white text-black p-0 overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
                         Delete Message
                     </DialogTitle>
-                    <DialogDescription className="text-center text-zinc-500">
+                    <DialogDescription className="text-center text-zinc-500 dark:text-white">
                         Are you sure you want to do this? <br />
                         The message will be permanently deleted.
                     </DialogDescription>
                 </DialogHeader>
-                <DialogFooter className="bg-gray-100 px-6 py-4">
-                    <div className="flex items-center justify-between w-full">
+                <DialogFooter className="bg-gray-100 dark:bg-[#2b2d31] px-6 py-4">
+                    <div className="flex items-center w-full justify-end">
                         <Button
-                            disabled={isLoading}
-                            onClick={onClose}
+                            className="hover:underline dark:text-white mr-3"
                             variant="ghost"
+                            onClick={() => onClose()}
+                            type="button"
                         >
                             Cancel
                         </Button>
                         <Button
                             disabled={isLoading}
+                            onClick={handleDeleteMessage}
                             variant="primary"
-                            onClick={onClick}
+                            size="server"
+                            className="bg-red-600 hover:bg-red-700"
                         >
-                            Confirm
+                            Delete
                         </Button>
                     </div>
                 </DialogFooter>

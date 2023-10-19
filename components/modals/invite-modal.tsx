@@ -54,40 +54,51 @@ const InviteModal: NextPage = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={onClose}>
-            <DialogContent className="bg-white text-black p-0 overflow-hidden">
+            <DialogContent className="bg-white text-black p-0 overflow-hidden dark:bg-dark dark:text-white">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
                         Invite Friends
                     </DialogTitle>
                 </DialogHeader>
-                <div className="p-6">
-                    <Label className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
+                <div className="p-6 ">
+                    <Label className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
                         Server invite link
                     </Label>
-                    <div className="flex items-center mt-2 gap-x-2">
+                    <div className="flex items-center mt-2 gap-x-2  dark:bg-dark">
                         <Input
                             disabled={isLoading}
-                            className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                            className=" bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
                             value={inviteUrl}
                         />
                         <Button
                             disabled={isLoading}
                             onClick={onCopy}
                             size="icon"
+                            className="dark:bg-zinc-300/50 bg-zinc-500"
                         >
                             {copied ? <Check /> : <Copy className="w-4 h4" />}
                         </Button>
                     </div>
-                    <Button
-                        disabled={isLoading}
-                        onClick={onGenerateNewLink}
-                        variant="link"
-                        size="sm"
-                        className="text-xs text-zinc-500 mt-4"
-                    >
-                        Generate a new link
-                        <RefreshCw className="w-4 h-4 ml-2" />
-                    </Button>
+                    <div className="flex items-center w-full justify-between">
+                        <Button
+                            disabled={isLoading}
+                            onClick={onGenerateNewLink}
+                            variant="link"
+                            size="sm"
+                            className="text-xs text-zinc-500 dark:text-zinc-300 mt-4"
+                        >
+                            Generate a new link
+                            <RefreshCw className="w-4 h-4 ml-2" />
+                        </Button>
+                        <Button
+                            className="hover:underline dark:text-white mt-3"
+                            variant="ghost"
+                            onClick={() => onClose()}
+                            type="button"
+                        >
+                            Cancel
+                        </Button>
+                    </div>
                 </div>
             </DialogContent>
         </Dialog>

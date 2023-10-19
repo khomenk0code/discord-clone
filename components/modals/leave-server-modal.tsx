@@ -41,24 +41,25 @@ const LeaveServerModal: NextPage = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={onClose}>
-            <DialogContent className="bg-white text-black p-0 overflow-hidden">
+            <DialogContent className="bg-white dark:bg-dark dark:text-white text-black p-0 overflow-hidden">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
                         Leave server?
                     </DialogTitle>
-                    <DialogDescription className="text-center text-zinc-500">
+                    <DialogDescription className="text-center text-zinc-500 dark:text-white">
                         Are you sure to leave{' '}
                         <span className="font-semibold text-indigo-500">
                             {server?.name}?
                         </span>
                     </DialogDescription>
                 </DialogHeader>
-                <DialogFooter className="bg-gray-100 px-6 py-4">
-                    <div className="flex items-center w-full justify-between">
+                <DialogFooter className="bg-gray-100 dark:bg-[#2b2d31] px-6 py-4">
+                    <div className="flex items-center w-full justify-end">
                         <Button
-                            disabled={isLoading}
-                            onClick={() => onClose}
+                            className="hover:underline dark:text-white mr-3"
                             variant="ghost"
+                            onClick={() => onClose()}
+                            type="button"
                         >
                             Cancel
                         </Button>
@@ -66,8 +67,10 @@ const LeaveServerModal: NextPage = () => {
                             disabled={isLoading}
                             onClick={handleLeaveServer}
                             variant="primary"
+                            size="server"
+                            className="bg-red-600 hover:bg-red-700"
                         >
-                            Confirm
+                            Leave
                         </Button>
                     </div>
                 </DialogFooter>

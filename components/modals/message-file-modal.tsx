@@ -103,13 +103,24 @@ const MessageFileModal = () => {
                             </div>
                         </div>
                         <DialogFooter className="bg-gray-100 px-6 py-4">
-                            <Button
-                                size="server"
-                                disabled={isLoading}
-                                variant="primary"
-                            >
-                                Send
-                            </Button>
+                            <div className="flex items-center w-full justify-end">
+                                <Button
+                                    className="hover:underline dark:text-white mr-3"
+                                    variant="ghost"
+                                    onClick={() => onClose()}
+                                    type="button"
+                                >
+                                    Cancel
+                                </Button>
+                                <Button
+                                    disabled={isLoading}
+                                    variant="primary"
+                                    className="bg-indigo-500"
+                                    size="server"
+                                >
+                                    Send
+                                </Button>
+                            </div>
                         </DialogFooter>
                     </form>
                 </Form>

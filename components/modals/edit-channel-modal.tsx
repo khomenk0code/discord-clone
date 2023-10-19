@@ -96,7 +96,7 @@ const EditChannelModal = () => {
 
     return (
         <Dialog open={isModalOpen} onOpenChange={handleClose}>
-            <DialogContent className="bg-white text-black p-0 overflow-hidden">
+            <DialogContent className="bg-white text-black p-0 overflow-hidden dark:bg-dark dark:text-white">
                 <DialogHeader className="pt-8 px-6">
                     <DialogTitle className="text-2xl text-center font-bold">
                         Edit Channel
@@ -107,19 +107,19 @@ const EditChannelModal = () => {
                         onSubmit={form.handleSubmit(onSubmit)}
                         className="space-y-8"
                     >
-                        <div className="space-y-8 px-6">
+                        <div className="space-y-8 px-6 ">
                             <FormField
                                 control={form.control}
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
+                                        <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
                                             Channel name
                                         </FormLabel>
                                         <FormControl>
                                             <Input
                                                 disabled={isLoading}
-                                                className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                                                className="dark:text-white bg-zinc-300/50 border-0 focus-visible:ring-0  focus-visible:ring-offset-0"
                                                 placeholder="Enter channel name"
                                                 {...field}
                                             />
@@ -133,14 +133,16 @@ const EditChannelModal = () => {
                                 name="type"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Channel Type</FormLabel>
+                                        <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                                            Channel Type
+                                        </FormLabel>
                                         <Select
                                             disabled={isLoading}
                                             onValueChange={field.onChange}
                                             defaultValue={field.value}
                                         >
                                             <FormControl>
-                                                <SelectTrigger className="bg-zinc-300/50 border-0 focus:ring-0 text-black ring-offset-0 focus:ring-offset-0 capitalize outline-none">
+                                                <SelectTrigger className="dark:text-white bg-zinc-300/50 border-0 focus:ring-0 text-black ring-offset-0 focus:ring-offset-0 capitalize outline-none">
                                                     <SelectValue placeholder="Select a channel type" />
                                                 </SelectTrigger>
                                             </FormControl>
@@ -163,10 +165,25 @@ const EditChannelModal = () => {
                                 )}
                             />
                         </div>
-                        <DialogFooter className="bg-gray-100 px-6 py-4">
-                            <Button variant="primary" disabled={isLoading}>
-                                Save
-                            </Button>
+                        <DialogFooter className="bg-gray-100 dark:bg-[#2b2d31] px-6 py-4">
+                            <div className="flex items-center w-full justify-end">
+                                <Button
+                                    className="hover:underline dark:text-white mr-3"
+                                    variant="ghost"
+                                    onClick={() => onClose()}
+                                    type="button"
+                                >
+                                    Cancel
+                                </Button>
+                                <Button
+                                    disabled={isLoading}
+                                    variant="primary"
+                                    className="bg-indigo-500"
+                                    size="server"
+                                >
+                                    Save
+                                </Button>
+                            </div>
                         </DialogFooter>
                     </form>
                 </Form>

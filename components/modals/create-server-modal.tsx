@@ -142,7 +142,13 @@ const CreateServerModal: NextPage = () => {
                             ></FormField>
                         </div>
                         <DialogFooter className="bg-gray-100 px-6 py-4">
-                            <Button variant="ghost">Back</Button>
+                            <Button
+                                variant="ghost"
+                                onClick={handleCloseModal}
+                                type="button"
+                            >
+                                Back
+                            </Button>
                             <Button
                                 size="server"
                                 disabled={isLoading}
