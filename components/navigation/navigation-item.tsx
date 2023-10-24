@@ -44,7 +44,13 @@ const NavigationItem: NextPage<NavigationItemProps> = ({
                             'bg-primary/10 text-primary rounded-[16px]'
                     )}
                 >
-                    <Image fill src={imageUrl} alt="Channel" />
+                    <Image
+                        fill
+                        src={imageUrl}
+                        alt="Channel"
+                        priority
+                        sizes="(max-width: 768px) 33vw"
+                    />
                 </div>
             </button>
         </ActionTooltip>
