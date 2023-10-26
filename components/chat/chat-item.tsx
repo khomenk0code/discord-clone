@@ -6,7 +6,14 @@ import qs from 'query-string'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Member, MemberRole, Profile } from '@prisma/client'
-import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from 'lucide-react'
+import {
+    Copy,
+    Edit,
+    FileIcon,
+    ShieldAlert,
+    ShieldCheck,
+    Trash,
+} from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useRouter, useParams } from 'next/navigation'
@@ -79,6 +86,10 @@ const ChatItem: NextPage<ChatItemProps> = ({
         router.push(`/servers/${params?.serverId}/conversations/${member.id}`)
     }
 
+    function copyText(entryText: string) {
+        navigator.clipboard.writeText(entryText)
+    }
+
     useEffect(() => {
         const handleKeyDown = (event: any) => {
             if (event.key === 'Escape' || event.keyCode === 27) {
@@ -131,6 +142,8 @@ const ChatItem: NextPage<ChatItemProps> = ({
     const canEditMessage = !deleted && isOwner && !fileUrl
     const isPDF = fileType === 'pdf' && fileUrl
     const isImage = !isPDF && fileUrl
+    const canCopyMessage = !isImage && !isPDF && !deleted
+    const showContextMenu = canCopyMessage || canEditMessage || canDeleteMessage
 
     return (
         <ContextMenu>
@@ -245,9 +258,21 @@ const ChatItem: NextPage<ChatItemProps> = ({
                             )}
                         </div>
                     </div>
-                    {canDeleteMessage && (
+
+                    {showContextMenu ? (
                         <ContextMenuContent>
-                            {canEditMessage && (
+                            {canCopyMessage && (
+                                <ContextMenuItem
+                                    className="w-40 flex justify-between"
+                                    onClick={() => {
+                                        copyText(content)
+                                    }}
+                                >
+                                    Copy text
+                                    <Copy className="w-4 h-4" />
+                                </ContextMenuItem>
+                            )}
+                            {canEditMessage && !isEditing && (
                                 <ContextMenuItem
                                     className="w-40 flex justify-between"
                                     onClick={() => setIsEditing(true)}
@@ -256,21 +281,30 @@ const ChatItem: NextPage<ChatItemProps> = ({
                                     <Edit className="w-4 h-4" />
                                 </ContextMenuItem>
                             )}
-                            <Separator className="my-1" />
-                            <ContextMenuItem
-                                className="w-40 flex justify-between text-rose-500"
-                                onClick={() =>
-                                    onOpen('deleteMessage', {
-                                        apiUrl: `${socketUrl}/${id}`,
-                                        query: socketQuery,
-                                    })
-                                }
-                            >
-                                Delete message
-                                <Trash className="w-4 h-4" />
-                            </ContextMenuItem>
+                            {canDeleteMessage && canEditMessage && (
+                                <>
+                                    <Separator className="my-1" />
+                                </>
+                            )}
+                            {canDeleteMessage && (
+                                <>
+                                    <ContextMenuItem
+                                        className="w-40 flex justify-between text-rose-500"
+                                        onClick={() =>
+                                            onOpen('deleteMessage', {
+                                                apiUrl: `${socketUrl}/${id}`,
+                                                query: socketQuery,
+                                            })
+                                        }
+                                    >
+                                        Delete message
+                                        <Trash className="w-4 h-4" />
+                                    </ContextMenuItem>
+                                </>
+                            )}
                         </ContextMenuContent>
-                    )}
+                    ) : null}
+
                     {canDeleteMessage && (
                         <div className="hidden group-hover:flex items-center gap-x-2 absolute p-1 -top-2 right-5 bg-white dark:bg-zinc-800 border rounded-sm">
                             {canEditMessage && (
