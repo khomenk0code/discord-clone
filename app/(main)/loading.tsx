@@ -6,6 +6,7 @@ import Image from 'next/image'
 const Loader = () => {
     const [showConnectionError, setShowConnectionError] = useState(false)
     const [isClient, setIsClient] = useState(false)
+    const [videoLoaded, setVideoLoaded] = useState(false)
     const videoRef = useRef<HTMLVideoElement>(null)
 
     useEffect(() => {
@@ -30,20 +31,53 @@ const Loader = () => {
         return () => clearInterval(interval)
     }, [])
 
+    useEffect(() => {
+        const handleVideoLoadedData = () => {
+            setVideoLoaded(true)
+        }
+
+        if (videoRef.current) {
+            videoRef.current.addEventListener(
+                'loadeddata',
+                handleVideoLoadedData
+            )
+        }
+
+        return () => {
+            if (videoRef.current) {
+                videoRef.current.removeEventListener(
+                    'loadeddata',
+                    handleVideoLoadedData
+                )
+            }
+        }
+    }, [])
+
     return (
         <div className="fixed top-0 left-0 z-50 w-full h-full flex items-center justify-center bg-[#2b2d31] flex-col">
-            <video
-                ref={videoRef}
-                muted
-                playsInline
-                className=" w-[200px] h-[200px]"
-            >
-                <source
-                    src="/assets/682f1b679b5bdb117165.webm"
-                    type="video/webm"
-                />
-                <Image alt="Discord" src="/assets/img.png" />
-            </video>
+            {videoLoaded ? (
+                <video
+                    ref={videoRef}
+                    muted
+                    playsInline
+                    className=" w-[200px] h-[200px]"
+                >
+                    <source
+                        src="/assets/682f1b679b5bdb117165.webm"
+                        type="video/webm"
+                    />
+                </video>
+            ) : (
+                <div className="w-[200px] h-[200px]">
+                    <Image
+                        alt="Discord"
+                        src="/assets/img.png"
+                        width={200}
+                        height={200}
+                    />
+                </div>
+            )}
+
             <div className="uppercase font-semibold text-xs mb-1.5 text-[#939598]">
                 did you know
             </div>
@@ -64,7 +98,9 @@ const Loader = () => {
                             <Image
                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/480px-Telegram_2019_Logo.svg.png"
                                 alt="Telegram"
-                                className="w-4 h-4 mr-2"
+                                className="mr-2"
+                                width={16}
+                                height={16}
                             />
                             Message Us!
                         </Link>
