@@ -5,7 +5,5 @@ export default authMiddleware({
 })
 
 export const config = {
-    clerk: {
-        matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
-    },
+    matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 }
